@@ -11,3 +11,13 @@ class DocumentCreator:
     """
     Provides functions to create different types of documents
     """
+
+    def create_pdf():
+        """
+        Creates a pdf document
+        """
+
+    def open_document():
+        """
+        Opens previously created document.
+        """
