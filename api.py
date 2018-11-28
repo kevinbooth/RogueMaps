@@ -28,15 +28,15 @@ class GoogleMapsHelper:
         gmaps = googlemaps.Client(key='AIzaSyCtjrtull-lGC4jo0IwlSJBTAf8GhZkuSY')
 
         now = datetime.now()
-        #directions_result = gmaps.directions(travel_information['start_address'],
-        #                             travel_information['end_address'],
-        #                             mode=travel_information['travel_mode'],
-        #                             departure_time=now)
-
-        directions_result = gmaps.directions('1 S Main St, Manchester NH 03102',
-                                     '175 Canal St, Manchester NH 03101',
-                                     mode='driving',
+        directions_result = gmaps.directions(travel_information['start_address'],
+                                     travel_information['end_address'],
+                                     mode=travel_information['travel_mode'],
                                      departure_time=now)
+
+        #directions_result = gmaps.directions('1 S Main St, Manchester NH 03102',
+        #                             '175 Canal St, Manchester NH 03101',
+        #                             mode='driving',
+        #                             departure_time=now)
         directions_result = json.dumps(directions_result)
         return json.loads(directions_result)[0]
 
@@ -47,9 +47,15 @@ class GoogleMapsHelper:
         Returns: dictionary of strings and lists
         """
         return_dict = defaultdict(list)
+
+        return_dict['start_address'].append(api_data['legs'][0]['start_address'])
+        return_dict['end_address'].append(api_data['legs'][0]['end_address'])
+        return_dict['distance'].append(api_data['legs'][0]['distance']['text'])
+        return_dict['duration'].append(api_data['legs'][0]['duration']['text'])
+        return_dict['duration_in_traffic'].append(api_data['legs'][0]['duration_in_traffic']['text'])
+        return_dict['travel_mode'].append(api_data['legs'][0]['steps'][0]['travel_mode'])
+
         for instruction in api_data['legs'][0]['steps']:
-            return_dict['instructions']
-            .append(BeautifulSoup(instruction['html_instructions']).get_text())
-        print(api_data['legs'][0]['steps'][0]['html_instructions'])
-        print(' ')
-        print(return_dict['instructions'])
+            return_dict['instructions'].append(BeautifulSoup(instruction['html_instructions'], 'html.parser').get_text())
+
+        return return_dict
