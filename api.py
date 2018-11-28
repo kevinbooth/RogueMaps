@@ -2,7 +2,7 @@
 api.py
 Module that provides Google Maps API functions
 Created by Kevin Booth
-Nov 15, 2017
+Nov 15, 2018
 """
 
 import googlemaps

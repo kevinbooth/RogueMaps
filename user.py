@@ -2,7 +2,7 @@
 user.py
 Module that provides user specific functions
 Created by Kevin Booth
-Nov 15, 2017
+Nov 15, 2018
 """
 
 
