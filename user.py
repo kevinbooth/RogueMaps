@@ -27,21 +27,12 @@ class UserInterface:
         """
 
         tMode = {'walking':1, 'bicycling':2, 'transit':3, 'driving':4}
-        start_street = input('Please enter the starting street address (ex: 1 Main St): ')
-        start_city = input('Please enter the starting city (ex: Manchester): ')
-        start_state = input('Please enter the starting state (ex: NH): ')
-        start_zipcode = input('Please enter the starting zipcode (ex: 03101): ')
 
-        start_address = str(start_street) + ', ' + str(start_city) + ' ' + str(start_state) + ' ' + str(start_zipcode)
+        start_address = input('\nPlease enter the starting address including all nessesary information in the format as follows.\n (ex: 88 Commercial St, Manchester, NH 03101):\n')
 
-        end_street = input('Please enter the destination street address (ex: 1 Maple St): ')
-        end_city = input('Please enter the destination city (ex: Nashua): ')
-        end_state = input('Please enter the destination state (ex: NH): ')
-        end_zipcode = input('Please enter the destination zipcode (ex: 03061): ')
+        end_address = input('\nPlease enter the starting address including all nessesary information in the format as follows.\n (ex: 88 Commercial St, Manchester, NH 03101):\n')
 
-        end_address = str(end_street) + ', ' + str(end_city) + ' ' + str(end_state) + ' ' + str(end_zipcode)
-
-        travel_mode = input('Please choose from the following travel modes: walking, bicycling, transit, or driving: ')
+        travel_mode = input('\nPlease choose from the following travel modes: walking, bicycling, transit, or driving:\n')
         correctbool=False
         while correctbool == False:
             err = 0
@@ -49,18 +40,18 @@ class UserInterface:
                 if travel_mode != a:
                     err+=1
                     if err >= 4:
-                        print('The mode of travel you have entered does not match any of the options.')
-                        travel_mode = input('Please enter one the following travel modes: WALKING, BICYCLING, TRANSIT, or DRIVING: ')
+                        print('\nThe mode of travel you have entered does not match any of the options.\n')
+                        travel_mode = input('Please enter one the following travel modes: WALKING, BICYCLING, TRANSIT, or DRIVING: \n')
 
                 else:
                     correctbool = True
 
-        depart_now = input('Would you like to depart now? [y/n]: ')
+        depart_now = input('\nWould you like to depart now? [y/n]: \n')
         correctbool = False
         while correctbool == False:
-            if depart_now != 'y':
-                print('Invalid response! Please enter \'y\' for \'yes\' or \'n\' for \'no.\'\n')
-                depart_now = input('Would you like to depart now? [y/n]: ')
+            if depart_now != 'y' and depart_now != 'n':
+                print('\nInvalid response! Please enter \'y\' for \'yes\' or \'n\' for \'no.\'\n')
+                depart_now = input('\nWould you like to depart now? [y/n]: \n')
             else:
                 correctbool = True
 
