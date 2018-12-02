@@ -15,14 +15,18 @@ import json
 
 class GoogleMapsHelper:
     """
-    Provides functions to use the Google Maps API
+    Provides functions to use the Google Maps API and format the response
+    data
     """
 
     def api_call(travel_information):
         """
         Makes an API call to Google Maps and returns directions
-        travel_information: dictionary with four keys - start_address,
-        end_address, travel_mode, and depart_now
+        travel_information: dictionary with four keys:
+            start_address
+            end_address
+            travel_mode
+            depart_now
         Returns: JSON object
         """
         gmaps = googlemaps.Client(key='AIzaSyCtjrtull-lGC4jo0IwlSJBTAf8GhZkuSY')
@@ -45,7 +49,16 @@ class GoogleMapsHelper:
         """
         Massages and manipulates the data retrieved from Google Maps to
         prepare it for PDF writing
-        Returns: dictionary of strings and lists
+        api_data: JSON object received from api_call function
+        Returns: dictionary of strings and lists with the following keys:
+            start_address
+            end_address
+            distance
+            duration
+            duration_in_traffic
+            travel_mode
+            instructions
+            step_distance
         """
         return_dict = defaultdict(list)
 

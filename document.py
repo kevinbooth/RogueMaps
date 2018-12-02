@@ -6,6 +6,8 @@ Nov 28, 2018
 """
 
 from fpdf import FPDF
+from datetime import datetime
+from os import path
 
 
 class DocumentCreator:
@@ -15,7 +17,16 @@ class DocumentCreator:
 
     def create_pdf(direction_dict):
         """
-        Creates a pdf document
+        Creates a pdf document with the data retrieved from Google Maps
+        direction_dict: dictionary of strings and lists with the following keys:
+            start_address
+            end_address
+            distance
+            duration
+            duration_in_traffic
+            travel_mode
+            instructions
+            step_distance
         """
         pdf = FPDF()
         pdf.add_page()
@@ -27,11 +38,13 @@ class DocumentCreator:
         pdf.multi_cell(180, 10, '')
         for index in range(len(direction_dict['instructions'])):
             pdf.set_font('Arial', '', 12)
-            pdf.multi_cell(180, 10, direction_dict['instructions'][index])
+            pdf.multi_cell(180, 5, direction_dict['instructions'][index])
             pdf.set_font('Arial', '', 10)
-            pdf.multi_cell(180, 0, direction_dict['step_distance'][index]['text'])
+            pdf.multi_cell(180, 5, direction_dict['step_distance'][index]['text'])
             pdf.multi_cell(180, 5, '')
-        pdf.output('tuto1.pdf', 'F')
+        file_name = 'directions' + '{:%Y_%m_%d}'.format(datetime.now()) + '.pdf'
+        full_file_path = path.join(path.join(path.expanduser('~')), file_name)
+        pdf.output(full_file_path, 'F')
 
     def open_document():
         """
