@@ -27,6 +27,7 @@ class DocumentCreator:
             travel_mode
             instructions
             step_distance
+        Returns: the full path plus the file name in one string
         """
         pdf = FPDF()
         pdf.add_page()
@@ -50,7 +51,9 @@ class DocumentCreator:
         full_file_path = path.join(path.join(path.expanduser('~')), file_name)
         pdf.output(full_file_path, 'F')
 
-    def open_document():
+        return full_file_path
+
+    def open_document(full_file_path):
         """
         Opens previously created document.
         """

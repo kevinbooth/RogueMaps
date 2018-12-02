@@ -16,4 +16,5 @@ if __name__ == '__main__':
     user_data = UserInterface.retrieve_user_data()
     api_call_data = GoogleMapsHelper.api_call(user_data)
     massaged_data = GoogleMapsHelper.massage_api_response(api_call_data)
-    created_pdf = DocumentCreator.create_pdf(massaged_data)
+    full_file_path = DocumentCreator.create_pdf(massaged_data)
+    DocumentCreator.open_document(full_file_path)

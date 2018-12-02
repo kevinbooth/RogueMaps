@@ -21,10 +21,10 @@ class UserInterface:
     def retrieve_user_data():
         """
         Retrieves data about directions from the user
-        Returns: dictionary
-            starting destination
-            ending destination
-            mode of transportation
+        Returns: dictionary with the following keys:
+            start_address
+            end_address
+            depart_now
         """
         t_mode = {'walking': 1, 'bicycling': 2, 'transit': 3, 'driving': 4}
 
