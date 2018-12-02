@@ -61,15 +61,17 @@ class GoogleMapsHelper:
             step_distance
         """
         return_dict = defaultdict(list)
+        legs = api_data['legs'][0]
 
-        return_dict['start_address'].append(api_data['legs'][0]['start_address'])
-        return_dict['end_address'].append(api_data['legs'][0]['end_address'])
-        return_dict['distance'].append(api_data['legs'][0]['distance']['text'])
-        return_dict['duration'].append(api_data['legs'][0]['duration']['text'])
-        return_dict['duration_in_traffic'].append(api_data['legs'][0]['duration_in_traffic']['text'])
-        return_dict['travel_mode'].append(api_data['legs'][0]['steps'][0]['travel_mode'])
+        return_dict['start_address'].append(legs['start_address'])
+        return_dict['end_address'].append(legs['end_address'])
+        return_dict['distance'].append(legs['distance']['text'])
+        return_dict['duration'].append(legs['duration']['text'])
+        if 'duration_in_traffic' in legs:
+            return_dict['duration_in_traffic'].append(legs['duration_in_traffic']['text'])
+        return_dict['travel_mode'].append(legs['steps'][0]['travel_mode'])
 
-        for instruction in api_data['legs'][0]['steps']:
+        for instruction in legs['steps']:
             return_dict['instructions'].append(BeautifulSoup(instruction['html_instructions'], 'html.parser').get_text())
             return_dict['step_distance'].append(instruction['distance'])
         return return_dict
