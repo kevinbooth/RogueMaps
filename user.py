@@ -17,7 +17,7 @@ class UserInterface:
         """
         print('Welcome to RogueMaps where you can save your directions into a PDF')
 
-    def user_data_retrieval():
+    def retrieve_user_data():
         """
         Retrieves data about directions from the user
         Returns: dictionary
