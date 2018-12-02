@@ -39,7 +39,6 @@ class GoogleMapsHelper:
                                             )
 
         directions_result = json.dumps(directions_result)
-
         return json.loads(directions_result)[0]
 
     def massage_api_response(api_data):
