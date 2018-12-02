@@ -12,35 +12,32 @@ import googlemaps
 import json
 
 
-
 class GoogleMapsHelper:
     """
     Provides functions to use the Google Maps API and format the response
     data
     """
 
-    def api_call(travel_information):
+    def api_call(travel_info):
         """
         Makes an API call to Google Maps and returns directions
-        travel_information: dictionary with four keys:
+        travel_info: dictionary with four keys:
             start_address
             end_address
             travel_mode
             depart_now
         Returns: JSON object
         """
-        gmaps = googlemaps.Client(key='AIzaSyCtjrtull-lGC4jo0IwlSJBTAf8GhZkuSY')
+        gmap = googlemaps.Client(key='AIzaSyCtjrtull-lGC4jo0IwlSJBTAf8GhZkuSY')
 
         now = datetime.now()
-        directions_result = gmaps.directions(travel_information['start_address'],
-                                     travel_information['end_address'],
-                                     mode=travel_information['travel_mode'],
-                                     departure_time=now)
+        directions_result = gmap.directions(
+                                            travel_info['start_address'],
+                                            travel_info['end_address'],
+                                            mode=travel_info['travel_mode'],
+                                            departure_time=now
+                                            )
 
-        #directions_result = gmaps.directions('1 S Main St, Manchester NH 03102',
-        #                             '175 Canal St, Manchester NH 03101',
-        #                             mode='driving',
-        #                             departure_time=now)
         directions_result = json.dumps(directions_result)
 
         return json.loads(directions_result)[0]
@@ -68,10 +65,13 @@ class GoogleMapsHelper:
         return_dict['distance'].append(legs['distance']['text'])
         return_dict['duration'].append(legs['duration']['text'])
         if 'duration_in_traffic' in legs:
-            return_dict['duration_in_traffic'].append(legs['duration_in_traffic']['text'])
+            (return_dict['duration_in_traffic']
+             .append(legs['duration_in_traffic']['text']))
         return_dict['travel_mode'].append(legs['steps'][0]['travel_mode'])
 
         for instruction in legs['steps']:
-            return_dict['instructions'].append(BeautifulSoup(instruction['html_instructions'], 'html.parser').get_text())
+            (return_dict['instructions']
+             .append(BeautifulSoup(instruction['html_instructions'],
+                                   'html.parser').get_text()))
             return_dict['step_distance'].append(instruction['distance'])
         return return_dict

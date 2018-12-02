@@ -11,7 +11,6 @@ from document import DocumentCreator
 from user import UserInterface
 
 
-
 if __name__ == '__main__':
     UserInterface.welcome_message()
     user_data = UserInterface.retrieve_user_data()
