@@ -38,6 +38,7 @@ class GoogleMapsHelper:
         #                             mode='driving',
         #                             departure_time=now)
         directions_result = json.dumps(directions_result)
+
         return json.loads(directions_result)[0]
 
     def massage_api_response(api_data):
@@ -57,5 +58,5 @@ class GoogleMapsHelper:
 
         for instruction in api_data['legs'][0]['steps']:
             return_dict['instructions'].append(BeautifulSoup(instruction['html_instructions'], 'html.parser').get_text())
-
+            return_dict['step_distance'].append(instruction['distance'])
         return return_dict
