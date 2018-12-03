@@ -5,6 +5,7 @@ Created by Adam Harney
 Nov 28, 2018
 """
 
+import webbrowser
 from fpdf import FPDF
 from datetime import datetime
 from os import path
@@ -57,3 +58,4 @@ class DocumentCreator:
         """
         Opens previously created document.
         """
+        webbrowser.open_new(full_file_path)
