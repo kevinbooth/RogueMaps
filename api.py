@@ -27,19 +27,26 @@ class GoogleMapsHelper:
             travel_mode
             depart_now
         Returns: JSON object
+            or False on failure
         """
         gmap = googlemaps.Client(key='AIzaSyCtjrtull-lGC4jo0IwlSJBTAf8GhZkuSY')
 
         now = datetime.now()
-        directions_result = gmap.directions(
-                                            travel_info['start_address'],
-                                            travel_info['end_address'],
-                                            mode=travel_info['travel_mode'],
-                                            departure_time=now
-                                            )
+        try:
+            directions_result = gmap.directions(
+                                                travel_info['start_address'],
+                                                travel_info['end_address'],
+                                                mode=travel_info['travel_mode'],
+                                                departure_time=now
+                                                )
+        except:
+            print('An Error occurred while retrieving directions')
 
-        directions_result = json.dumps(directions_result)
-        return json.loads(directions_result)[0]
+        if 'directions_result' in locals():
+            directions_result = json.dumps(directions_result)
+            return json.loads(directions_result)[0]
+        else:
+            return False
 
     def massage_api_response(api_data):
         """

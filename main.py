@@ -15,6 +15,10 @@ if __name__ == '__main__':
     UserInterface.welcome_message()
     user_data = UserInterface.retrieve_user_data()
     api_call_data = GoogleMapsHelper.api_call(user_data)
-    massaged_data = GoogleMapsHelper.massage_api_response(api_call_data)
-    full_file_path = DocumentCreator.create_pdf(massaged_data)
-    DocumentCreator.open_document(full_file_path)
+
+    if api_call_data is False:
+        print('Please try again')
+    else:
+        massaged_data = GoogleMapsHelper.massage_api_response(api_call_data)
+        full_file_path = DocumentCreator.create_pdf(massaged_data)
+        DocumentCreator.open_document(full_file_path)
