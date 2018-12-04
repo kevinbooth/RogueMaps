@@ -42,7 +42,7 @@ class GoogleMapsHelper:
         except:
             print('An Error occurred while retrieving directions')
 
-        if 'directions_result' in locals():
+        if 'directions_result' in locals() and len(directions_result):
             directions_result = json.dumps(directions_result)
             return json.loads(directions_result)[0]
         else:
