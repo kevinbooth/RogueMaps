@@ -21,4 +21,7 @@ if __name__ == '__main__':
     else:
         massaged_data = GoogleMapsHelper.massage_api_response(api_call_data)
         full_file_path = DocumentCreator.create_pdf(massaged_data)
-        DocumentCreator.open_document(full_file_path)
+        if user_data ['depart_now'] == 'y':
+            DocumentCreator.open_document(full_file_path)
+        elif user_data ['depart_now'] == 'n':
+            print("Directions pdf created in: " + full_file_path)
