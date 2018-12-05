@@ -30,11 +30,11 @@ class UserInterface:
 
         start_address = input('\nPlease enter the starting address including' +
                               ' all nessesary information in the format as ' +
-                              'follows.\n (ex: 88 Commercial St, Manchester,' +
+                              'follows.\n(ex: 88 Commercial St, Manchester,' +
                               ' NH 03101):\n')
         end_address = input('\nPlease enter the end address including' +
                             ' all nessesary information in the format' +
-                            ' as follows.\n (ex: 88 Commercial St,' +
+                            ' as follows.\n(ex: 88 Commercial St,' +
                             ' Manchester, NH 03101):\n')
         travel_mode = input('\nPlease choose from the following travel' +
                             ' modes: walking, bicycling, transit,' +

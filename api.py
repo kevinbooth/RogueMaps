@@ -2,7 +2,7 @@
 api.py
 Module that provides Google Maps API functions
 Created by Kevin Booth
-Nov 15, 2017
+Nov 15, 2018
 """
 
 from bs4 import BeautifulSoup
@@ -39,7 +39,7 @@ class GoogleMapsHelper:
                                                 mode=travel_info['travel_mode'],
                                                 departure_time=now
                                                 )
-        except:
+        except googlemaps.exceptions.ApiError:
             print('An Error occurred while retrieving directions')
 
         if 'directions_result' in locals() and len(directions_result):
