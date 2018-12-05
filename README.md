@@ -17,8 +17,6 @@ COMP 525 Data Structures Fundamentals, Fall 2018
 
 **Design - How is the program structured? How does the data flow?**
 
-_Use a component-based approach to describing the program's design. Divide the design in two parts (see below). **Add author name. **_
-
 **<span style="text-decoration:underline;">Design Components_ Author: Adam Harney_</span>**
 
 
