@@ -29,7 +29,7 @@ class GoogleMapsHelper:
         Returns: JSON object
             or False on failure
         """
-        gmap = googlemaps.Client(key='AIzaSyCtjrtull-lGC4jo0IwlSJBTAf8GhZkuSY')
+        gmap = googlemaps.Client(key='your-google-maps-api-key')
 
         now = datetime.now()
         try:
